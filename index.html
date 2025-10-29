@@ -1,67 +1,289 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAP Garland, LLC</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thresholds SPC. — Geo & Agri Analytics</title>
+  <meta name="description" content="Thresholds SPC. — precision agriculture, remote sensing, and data-driven farm advisory in Santa Rosa, CA."/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
+    :root{
+      --primary:#0ea5a0;   /* teal/green */
+      --accent:#f59e0b;    /* amber/gold */
+      --bg:#061012;        /* deep bg */
+      --surface:#0b1a1c;   /* cards */
+      --text:#e6fffb;      /* light text */
+      --muted:#b6e4df;     /* muted */
+      --ring:0 10px 30px rgba(14,165,160,.30);
     }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:
+        radial-gradient(900px 600px at -10% -10%, #0ea5a0 0%, transparent 60%),
+        radial-gradient(800px 500px at 110% 10%, #f59e0b44 0%, transparent 55%),
+        var(--bg);
+      color:var(--text);
     }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    .contact {
-      background: #fff;
-      padding: 20px;
-      border-left: 5px solid #003366;
-      margin-top: 30px;
-    }
-    footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 50px;
+    img{max-width:100%;display:block;border-radius:14px}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1150px;margin:0 auto;padding:24px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:40;background:rgba(11,26,28,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(182,228,223,.16)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+    .brand-badge{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,#0ea5a0,#22d3c5);display:grid;place-items:center;box-shadow:var(--ring)}
+    .brand-badge svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:#e6fffbcc;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(182,228,223,.12)}
+    .cta{background:var(--accent);color:#1f2937;padding:9px 14px;border-radius:10px;font-weight:800;box-shadow:0 8px 18px rgba(245,158,11,.25)}
+    .menu-btn{display:none;border:1px solid rgba(182,228,223,.3);padding:8px 10px;border-radius:10px;color:#e6fffbcc;background:transparent}
+
+    /* Hero */
+    .hero{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;padding:56px 24px}
+    .card-glow{position:absolute;inset:-1px;border-radius:20px;pointer-events:none;background:conic-gradient(from 90deg at 50% 50%, rgba(14,165,160,.18), rgba(245,158,11,.12), rgba(14,165,160,.18));filter:blur(48px);opacity:.65;z-index:-1}
+    .hero h1{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 10px}
+    .hero p{font-size:1.07rem;color:var(--muted);margin:0}
+    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#0ea5a0,#0f766e);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;box-shadow:var(--ring);transform:translateZ(0)}
+    .btn svg{transition:transform .3s}
+    .btn:hover svg{transform:translateX(4px)}
+    .btn.secondary{background:linear-gradient(180deg,#f59e0b,#d97706);color:#1a1a1a}
+    .hero-visual{position:relative}
+    .gloss{position:absolute;inset:0;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 30%);pointer-events:none}
+    .floating-badges{position:absolute;left:-12px;bottom:-12px;display:flex;gap:10px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(4,12,12,.78);border:1px solid rgba(182,228,223,.22);color:#f8fafc;padding:8px 10px;border-radius:999px;font-size:.9rem;backdrop-filter:blur(6px);animation:float 6s ease-in-out infinite}
+    .chip:nth-child(2){animation-delay:1.1s}.chip:nth-child(3){animation-delay:2.2s}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* Sections */
+    section{padding:64px 24px}
+    section h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 14px}
+    .muted{color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px}
+    .card{background:var(--surface);border:1px solid rgba(182,228,223,.18);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.35);padding:18px;transform:translateY(6px);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s}
+    .card.show{transform:none;opacity:1}
+    .card h3{margin:0 0 6px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .gallery img{aspect-ratio:4/3;object-fit:cover;border:1px solid rgba(182,228,223,.18);transition:transform .4s, box-shadow .4s}
+    .gallery img:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+    .promo{margin-top:14px;border-radius:14px;overflow:hidden;border:1px solid rgba(182,228,223,.18)}
+
+    /* Contact */
+    .contact-box{background:linear-gradient(145deg,rgba(245,158,11,.95),rgba(245,158,11,.85));color:#111827;border-radius:18px;padding:24px;box-shadow:0 14px 34px rgba(245,158,11,.25);border:1px solid rgba(0,0,0,.08)}
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .contact-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .contact-actions a{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;font-weight:800;box-shadow:var(--ring)}
+    .contact-actions a:hover{filter:brightness(1.08)}
+
+    /* Footer */
+    footer{background:#081214;color:#99f6e4;text-align:center;padding:22px;border-top:1px solid rgba(182,228,223,.18)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .menu-btn{display:inline-flex}
+      nav{display:none}
+      nav.open{display:flex;flex-direction:column;position:absolute;top:62px;right:14px;background:rgba(11,26,28,.95);border:1px solid rgba(182,228,223,.18);padding:10px;border-radius:12px}
+      .gallery{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>CAP Garland, LLC</h1>
-    <p>Private Investment Fund</p>
-  </header>
 
-  <section>
-    <h2>About Us</h2>
-    <p>CAP Garland, LLC is a Washington-based private investment fund focused on delivering value through diversified investment strategies.</p>
-
-    <h2>Contact</h2>
-    <div class="contact">
-      <p><strong>Address:</strong> 915 W 2nd Ave, Spokane, WA 99201</p>
-      <p><strong>Email:</strong> <a href="mailto:ryanberg@capgarland.shop">ryanberg@capgarland.shop</a></p>
-      <p><strong>Phone:</strong> (509) 822-3850</p>
+<header>
+  <div class="topbar container">
+    <div class="brand">
+      <div class="brand-badge" aria-hidden="true">
+        <!-- satellite icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
+          <path d="m7 2 5 5-2 2L5 4 7 2Zm7 7 3 3-9 9H5v-3l9-9ZM14 2l2 2-3 3-2-2 3-3Zm6 6 2 2-3 3-2-2 3-3Z"/>
+        </svg>
+      </div>
+      <span>Thresholds SPC.</span>
     </div>
-  </section>
 
-  <footer>
-    &copy; 2025 CAP Garland, LLC. All rights reserved.
-  </footer>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#e6fffb" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h18v2H3zM3 11h18v2H3zM3 15h18v2H3z"/></svg>
+    </button>
+
+    <nav id="mainNav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero container">
+  <span class="card-glow" aria-hidden="true"></span>
+  <div>
+    <h1>Measure. Manage. Grow.</h1>
+    <p>
+      <strong>Thresholds SPC.</strong> delivers precision-ag insights with satellite, drone, and field data
+      so farms can boost yield, cut inputs, and stay compliant—across Santa Rosa, CA.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn" aria-label="View Services">
+        <!-- spark icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 9.8 9.8 2 12l7.8 2.2L12 22l2.2-7.8L22 12l-7.8-2.2L12 2z"/></svg>
+        View Services
+      </a>
+      <a href="#contact" class="btn secondary" aria-label="Get in touch">
+        <!-- chat icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#111827" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v10H7l-3 3V5z"/></svg>
+        Get in Touch
+      </a>
+    </div>
+    <p class="muted" style="margin-top:12px;display:flex;align-items:center;gap:10px;">
+      <!-- phone icon -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#b6e4df" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 7a1 1 0 0 1 1-1h3.48a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1l-2.2 2.2Z"/></svg>
+      1 (325) 757-2721 • support@kalvions.shop
+    </p>
+  </div>
+  <div class="hero-visual">
+    <img src="https://www.le34.dk/wp-content/uploads/2017/09/Agro7_16-9.jpg" alt="Precision agriculture field mapping and sensors">
+    <span class="gloss" aria-hidden="true"></span>
+    <div class="floating-badges" aria-hidden="true">
+      <span class="chip">
+        <!-- target icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#22d3c5" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 1 0 9 9h-2a7 7 0 1 1-7-7V3Z"/><path d="M11 11h2v3l3 2-1 1-4-3v-3Z"/></svg>
+        Precision Ag
+      </span>
+      <span class="chip">
+        <!-- drone icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#a7f3d0" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h4l2 2h4l2-2h4l-2 2 2 2h-4l-2-2h-4l-2 2H2l2-2-2-2Z"/></svg>
+        Drone & RS
+      </span>
+      <span class="chip">
+        <!-- chart icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg"><path d="M4 20h16v-2H4v2Zm2-4h3V8H6v8Zm5 0h3V4h-3v12Zm5 0h3v-6h-3v6Z"/></svg>
+        Data Insights
+      </span>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="container">
+  <h2>About Us</h2>
+  <p class="muted">
+    <strong>Thresholds SPC.</strong> blends agronomy with geospatial analytics to turn imagery and field
+    measurements into clear actions. Expect senior expertise, pragmatic advice, and measurable ROI.
+  </p>
+  <div class="cards reveal">
+    <div class="card">
+      <h3>Agronomy + Geo</h3>
+      <p>Hands-on farm knowledge with remote sensing and GIS.</p>
+    </div>
+    <div class="card">
+      <h3>Rapid Reporting</h3>
+      <p>Timely maps, alerts, and recommendations you can act on.</p>
+    </div>
+    <div class="card">
+      <h3>Open & Transparent</h3>
+      <p>Plain language, clear scopes, and shared dashboards.</p>
+    </div>
+    <div class="card">
+      <h3>Compliance Ready</h3>
+      <p>Documentation for audits, water usage, and sustainability goals.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="container">
+  <h2>Our Services</h2>
+  <div class="cards reveal">
+    <div class="card">
+      <h3>Field Mapping</h3>
+      <p>NDVI/NDRE, vigor zones, stand counts, and stress detection.</p>
+    </div>
+    <div class="card">
+      <h3>Irrigation & Fertility</h3>
+      <p>Moisture insights, variable-rate zones, and input optimization.</p>
+    </div>
+    <div class="card">
+      <h3>Pest & Disease Scouting</h3>
+      <p>Hotspot identification and treatment prioritization.</p>
+    </div>
+    <div class="card">
+      <h3>Reporting & Compliance</h3>
+      <p>Seasonal reports, sustainability KPIs, and audit-ready records.</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="container">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://avatars.mds.yandex.net/i?id=7b8e6962e91213da2f1780f32a800979-5285139-images-thumbs&ref=rim&n=33&w=480&h=320" alt="Drone flight over fields">
+    <img src="https://avatars.mds.yandex.net/i?id=4dc09d9ba3feea4284952f04e3ef05a37db2b9ca-5723070-images-thumbs&n=13" alt="Satellite imagery analysis on tablet">
+  </div>
+  <a class="promo" href="#contact" aria-label="Promo banner">
+    <img src="https://i.pinimg.com/originals/d5/69/12/d56912e297cf3a797d5d5c728a23fda9.gif" alt="Data to Decisions animated banner">
+  </a>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact</h2>
+  <div class="contact-box">
+    <div class="contact-grid">
+      <div><strong>Company:</strong> Thresholds SPC.</div>
+      <div><strong>Domain:</strong> Precision Agriculture & Geo Analytics</div>
+      <div><strong>Phone:</strong> +1 325 757 2721</div>
+      <div><strong>Email:</strong> support@kalvions.shop</div>
+      <div style="grid-column:1/-1"><strong>Address:</strong> CLOVER DR, SANTA ROSA, 95401, CA, United States</div>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:support@kalvions.shop?subject=Agri%20Analytics%20Inquiry">
+        <!-- mail icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16a2 2 0 0 1 2 2v.3l-10 6-10-6V8a2 2 0 0 1 2-2Zm16 4.1V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7.9l8 4.8 8-4.8Z"/></svg>
+        Email Us
+      </a>
+      <a href="tel:+13257572721">
+        <!-- phone icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 7a1 1 0 0 1 1-1h3.48a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.25 1l-2.2 2.2Z"/></svg>
+        Call Now
+      </a>
+      <a href="https://wa.me/13257572721" target="_blank" rel="noopener">
+        <!-- whatsapp-like bubble -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M20 3.6A10 10 0 0 0 4 17.6L3 22l4.5-1A10 10 0 1 0 20 3.6Zm-8 2.4a7 7 0 0 1 0 14 6.9 6.9 0 0 1-3.4-.9l-.3-.2-2.1.5.6-2-.2-.3a7 7 0 0 1 5.4-11.1Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Thresholds SPC. — All rights reserved
+</footer>
+
+<script>
+  // Mobile menu
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('mainNav');
+  btn?.addEventListener('click', ()=> nav.classList.toggle('open'));
+
+  // Scroll-reveal cards
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.card').forEach((c,i)=>{
+          setTimeout(()=>c.classList.add('show'), i*90);
+        });
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
